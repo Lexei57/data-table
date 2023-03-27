@@ -1,0 +1,42 @@
+<dx-data-grid
+  [dataSource]="dataSource"
+  [remoteOperations]="true"
+  [allowColumnResizing]="true"
+  [columnAutoWidth]="true"
+  [showBorders]="true"
+  [showColumnLines]="true"
+  [showRowLines]="true"
+  [rowAlternationEnabled]="true"
+  [pager]="{ allowedPageSizes: pageSizes, showPageSizeSelector: true }"
+>
+  <dxo-paging [pageSize]="pageSize"></dxo-paging>
+  <dxi-column dataField="name.first" caption="First Name"></dxi-column>
+  <dxi-column dataField="name.last" caption="Last Name"></dxi-column>
+  <dxi-column dataField="email" caption="Email"></dxi-column>
+  <dxi-column dataField="phone" caption="Phone"></dxi-column>
+  <dxi-column dataField="location.country" caption="Country"></dxi-column>
+  <dxi-column dataField="location.city" caption="City"></dxi-column>
+  <dxi-column dataField="location.state" caption="State"></dxi-column>
+  <dxi-column dataField="location.postcode" caption="Postcode"></dxi-column>
+  <dxo-detail rowTemplate="detailTemplate"></dxo-detail>
+  <ng-template #detailTemplate let-data>
+    <div class="detail-container">
+      <div class="detail-row">
+        <div class="detail-label">Gender:</div>
+        <div class="detail-value">{{ data.gender }}</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Date of Birth:</div>
+        <div class="detail-value">{{ data.dob.date | date }}</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Age:</div>
+        <div class="detail-value">{{ data.dob.age }}</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Nationality:</div>
+        <div class="detail-value">{{ data.nat }}</div>
+      </div>
+    </div>
+  </ng-template>
+</dx-data-grid>
