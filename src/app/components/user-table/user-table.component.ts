@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {ITableUser} from '../../models/user.model';
 import {UserService} from '../../services/user.service';
-import DataSource from 'devextreme/data/data_source';
+
 
 @Component({
   selector: 'app-user-table',
@@ -8,26 +9,44 @@ import DataSource from 'devextreme/data/data_source';
   styleUrls: ['./user-table.component.scss']
 })
 export class UserTableComponent implements OnInit {
-  dataSource!: DataSource;
-  pageSize = 25;
-  pageSizes = [25, 50, 100];
+  // dataSource: any
+  // allUsers: ITableUser[] = []
+
+  dataSource: ITableUser[] = []
+
 
   constructor(private userService: UserService) {
+    // this.dataSource = userService.generateData()
+    // this.allUsers = userService.returnAllUser()
   }
 
-  ngOnInit() {
-    this.dataSource = new DataSource({
-      load: (loadOptions) => {
-        return this.userService.getUsers().toPromise().then(data => {
-          return {
-            data: data.results,
-            totalCount: data.results.length
-          };
-        });
-      },
-      paginate: true,
-      pageSize: this.pageSize
-    });
+  allowedPageSizes = ['all'];
 
+  displayModes = [{ text: "Display Mode 'full'", value: 'full' }, { text: "Display Mode 'compact'", value: 'compact' }];
+
+  displayMode = 'full';
+
+  showPageSizeSelector = true;
+
+  showInfo = true;
+
+  showNavButtons = true;
+
+  customizeColumns(columns: any) {
+    columns.width = 70;
   }
+
+  get isCompactMode() {
+    return this.displayMode === 'compact';
+  }
+
+  ngOnInit(): void {
+    // console.log(this.dataSource);
+    // console.log(this.allUsers);
+    this.userService.getUsersTable().subscribe(users => {
+      this.dataSource = users
+    })
+  }
+
+
 }
