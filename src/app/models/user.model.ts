@@ -15,25 +15,41 @@ type Location = {
   city: string
   street: Street
 }
+type UserID = {
+  name: string
+  value: string
+}
 type FullName = string;
 type Gender = string;
 type Phone = string;
 
 export interface IUser {
-    picture: Picture;
-    name: Name;
-    gender: Gender;
-    phone: Phone;
-    email: string
-    street: string
-    city: string
-    fullName: FullName;
-    location: Location
+  picture: Picture;
+  name: Name;
+  gender: Gender;
+  phone: Phone;
+  fullName: FullName;
+}
+
+export interface IUserDetails {
+  location: Location;
+  // userID: UserID
+  id: {
+    name: string
+    value: string
+  }
+  street: string;
+  city: string;
+  email: string;
 }
 
 
 export interface IUserResponse {
-  results: IUser[]
+  results: IUser[];
+}
+
+export interface IUserDetailsResponse {
+  results: IUserDetails[];
 }
 
 

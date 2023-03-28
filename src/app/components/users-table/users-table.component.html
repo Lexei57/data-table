@@ -39,29 +39,43 @@
 
 <dx-data-grid
   id="gridContainer"
-  [dataSource]="users"
+  keyExpr="id.value"
+  [dataSource]="users | async"
   [showBorders]="true"
   [rowAlternationEnabled]="true"
 >
 
   <dxo-paging [pageSize]="25"> </dxo-paging>
   <dxi-column
-    dataField="picture"
+    caption="Photo"
+    dataField="picture.medium"
     dataType="string"
     [width]="100"
     [allowFiltering]="false"
     [allowSorting]="false"
     cellTemplate="cellTemplate"
   ></dxi-column>
-  <dxi-column dataField="name" dataType="string" [width]="150"></dxi-column>
+  <dxi-column dataField="fullName" dataType="string" [width]="150"></dxi-column>
   <dxi-column dataField="gender" dataType="string" [width]="100"></dxi-column>
   <dxi-column dataField="phone" dataType="number" [width]="130"></dxi-column>
-  <dxi-column dataField="street" dataType="number | string" [width]="200"></dxi-column>
-  <dxi-column dataField="city"  [width]="200"></dxi-column>
 
-  <div *dxTemplate="let data of 'cellTemplate'">
-    <img [src]="data.value" alt="profile-image">
+
+  <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
+
+
+  <div *dxTemplate="let user of 'cellTemplate'">
+    <img [src]="user.value" alt="profile-image">
   </div>
+
+<div *dxTemplate="let employee of 'detail'">
+    <div class="master-detail-caption">{{
+      'More information'
+      }}</div>
+<!--    <detail-grid [key]="employee.key"></detail-grid>-->
+  <app-user-details [key]="employee.key"></app-user-details>
+  </div>
+
+
 </dx-data-grid>
 
 

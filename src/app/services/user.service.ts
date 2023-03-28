@@ -9,7 +9,7 @@ import {IUser, IUserResponse, IUserValues} from '../models/user.model';
 })
 
 export class UserService {
-  private apiUrl = 'https://randomuser.me/api/?results=100&seed=755d9457a4d72f58'
+  private apiUrl = 'https://randomuser.me/api/?results=1&seed=755d9457a4d72f57'
 
 
 
