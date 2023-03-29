@@ -11,11 +11,17 @@ import {UserService} from '../../services/user.service';
 export class UsersTableComponent implements OnInit{
   // users: Observable<IUser[]> = this.userService.getUsers(); // переделать методм присвоивания данных через ngOnInit
   users: IUser[] = []
+
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
     this.userService.getUsers().subscribe(user => {
-      this.users = user.filter(user => user.id.value !== null)
+      if (user.length > 99) {
+        this.users = user.filter(user => user.id.value !== null)
+
+      } else {
+        this.users = user
+      }
     })
   }
 

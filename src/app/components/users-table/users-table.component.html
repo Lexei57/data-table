@@ -37,6 +37,10 @@
 <!--  <dxo-detail [template]="detailTemplate"></dxo-detail>-->
 <!--</dx-data-grid>-->
 
+<nav>
+  <a routerLink="/about">Go to about</a>
+</nav>
+
 <dx-data-grid
   id="gridContainer"
   keyExpr="id.value"
@@ -69,11 +73,8 @@
 
 <div *dxTemplate="let employee of 'detail'">
     <div class="master-detail-caption">{{'More information:'}}</div>
-<!--    <detail-grid [key]="employee.key"></detail-grid>-->
   <app-user-details [key]="employee.key"></app-user-details>
   </div>
-
-
 </dx-data-grid>
 
 
