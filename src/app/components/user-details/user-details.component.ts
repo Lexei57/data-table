@@ -1,4 +1,5 @@
 import { Component, Input, OnInit} from '@angular/core';
+import {IUser} from '../../models/user.model';
 import {UserService} from '../../services/user.service';
 import DataSource from 'devextreme/data/data_source';
 import ArrayStore from 'devextreme/data/array_store';
@@ -14,9 +15,15 @@ export class UserDetailsComponent implements OnInit {
 
   detailsDataSource: DataSource
 
+  users: IUser[] = []
+
   constructor(public userService: UserService) { }
 
   ngOnInit(): void {
+    this.userService.getUsers().subscribe(response => {
+      this.users = response
+    })
+
       this.detailsDataSource = new DataSource({
         store: new ArrayStore({
           data: this.userService.users.filter(user => user.id.value !== null),

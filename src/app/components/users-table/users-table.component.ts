@@ -15,7 +15,7 @@ export class UsersTableComponent implements OnInit{
 
   ngOnInit(): void {
     this.userService.getUsers().subscribe(user => {
-      this.users = user
+      this.users = user.filter(user => user.id.value !== null)
     })
   }
 
