@@ -1,5 +1,4 @@
-import {Component} from '@angular/core';
-import {Observable} from 'rxjs';
+import {Component, OnInit} from '@angular/core';
 import {IUser} from '../../models/user.model';
 import {UserService} from '../../services/user.service';
 
@@ -9,16 +8,16 @@ import {UserService} from '../../services/user.service';
   templateUrl: './users-table.component.html',
   styleUrls: ['./users-table.component.scss']
 })
-export class UsersTableComponent {
-  users: Observable<IUser[]> = this.userService.getUsers(); // переделать методм присвоивания данных через ngOnInit
-  // users: IUser[] = []
+export class UsersTableComponent implements OnInit{
+  // users: Observable<IUser[]> = this.userService.getUsers(); // переделать методм присвоивания данных через ngOnInit
+  users: IUser[] = []
   constructor(private userService: UserService) { }
 
-  // ngOnInit(): void {
-  //   this.userService.getUsers().subscribe(user => {
-  //     this.users = user
-  //   })
-  // }
+  ngOnInit(): void {
+    this.userService.getUsers().subscribe(user => {
+      this.users = user
+    })
+  }
 
 
 }

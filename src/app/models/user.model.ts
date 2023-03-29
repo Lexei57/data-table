@@ -15,10 +15,10 @@ type Location = {
   city: string
   street: Street
 }
-type UserID = {
-  name: string
-  value: string
-}
+// type UserID = {
+//   name: string
+//   value: string
+// }
 type FullName = string;
 type Gender = string;
 type Phone = string;
@@ -29,28 +29,35 @@ export interface IUser {
   gender: Gender;
   phone: Phone;
   fullName: FullName;
-}
-
-export interface IUserDetails {
   location: Location;
-  // userID: UserID
-  id: {
-    name: string
-    value: string
-  }
+  email: string;
   street: string;
   city: string;
-  email: string;
+  id: {
+    name: string
+    value: number
+  }
 }
+
+// export interface IUserDetails {
+//   location: Location;
+//   id: {
+//     name: string
+//     value: number
+//   }
+//   street: string;
+//   city: string;
+//   email: string;
+// }
 
 
 export interface IUserResponse {
   results: IUser[];
 }
 
-export interface IUserDetailsResponse {
-  results: IUserDetails[];
-}
+// export interface IUserDetailsResponse {
+//   results: IUserDetails[];
+// }
 
 
 

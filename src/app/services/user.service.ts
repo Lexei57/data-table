@@ -9,12 +9,17 @@ import {IUser, IUserResponse, IUserValues} from '../models/user.model';
 })
 
 export class UserService {
-  private apiUrl = 'https://randomuser.me/api/?results=1&seed=755d9457a4d72f57'
+  private seed: string = '755d9457a4d72f57'
+  private apiUrl = `https://randomuser.me/api/?results=100&seed=${this.seed}`
 
+  // usersDetails: IUserDetails[] = []
 
+  users: IUser[] = []
 
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    // this.getUserDetails().subscribe();
+    this.getUsers().subscribe()
+  }
 
   getUsers(): Observable<IUser[]> {
     return this.http.get<IUserResponse>(this.apiUrl).pipe(
