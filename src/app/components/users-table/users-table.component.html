@@ -63,8 +63,8 @@
     cellTemplate="cellTemplate"
   ></dxi-column>
   <dxi-column dataField="fullName" dataType="string" [width]="150"></dxi-column>
-  <dxi-column dataField="gender" dataType="string" [width]="100"></dxi-column>
-  <dxi-column dataField="phone"  [width]="130"></dxi-column>
+  <dxi-column *ngIf="queryOptions.gender" dataField="gender" dataType="string" [width]="100"></dxi-column>
+  <dxi-column *ngIf="queryOptions.phone" dataField="phone"  [width]="130"></dxi-column>
 
 
   <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>

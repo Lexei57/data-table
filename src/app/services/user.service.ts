@@ -21,6 +21,8 @@ export class UserService {
     // this.getUsers().subscribe();
   }
 
+
+
   getUsers(): Observable<IUser[]> {
     return this.http.get<IUserResponse>(this.apiUrl).pipe(
       map(response => {
