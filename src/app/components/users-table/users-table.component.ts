@@ -15,7 +15,7 @@ export class UsersTableComponent implements OnInit {
 
   queryOptions: IUserQueryParams = {
     gender: JSON.parse(localStorage.getItem('Gender')),
-    location: true,
+    location: JSON.parse(localStorage.getItem('Location')),
     email: JSON.parse(localStorage.getItem('Email')),
     phone: JSON.parse(localStorage.getItem('Phone'))
   };
@@ -24,25 +24,30 @@ export class UsersTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const inc = ['id', 'name', 'picture', ...Object.entries(this.queryOptions).filter(param => {
-      return param[1];
-    }).map(param => param[0])];
-    console.log(inc);
-    this.userService.getUsers({inc}).subscribe(users => {
-      console.log(users);
-      this.users = users;
-      // .filter(user => user.id.value !== null)
-    });
-
     this.filterTableOptions = Object.entries(this.queryOptions).map(option => {
       return {
         name: userQueryParamsNames[option[0] as keyof IUserQueryParams],
         value: option[1]
       };
     });
+
+    this.getUsers();
   }
 
   onChange($event: IFilterTableOptions): void {
-    console.log($event);
+    localStorage.setItem($event.name, JSON.stringify($event.value));
+    this.queryOptions[$event.name.toLowerCase() as keyof IUserQueryParams] = $event.value;
+    this.getUsers();
+  }
+
+  getUsers() {
+    const inc = ['id', 'name', 'picture', ...Object.entries(this.queryOptions).filter(param => {
+      return param[1];
+    }).map(param => param[0])];
+    console.log(inc);
+    this.userService.getUsers({inc}).subscribe(users => {
+      console.log(users);
+      this.users = users.filter(noIdUsr => noIdUsr.id.value !== null);
+    });
   }
 }

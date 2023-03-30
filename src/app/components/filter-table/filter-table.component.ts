@@ -17,7 +17,6 @@ export class FilterTableComponent {
   onChange(event: IFilterTableOptions) {
     event.value = !event.value;
     this.valueChanged.emit(event)
-    localStorage.setItem(String(event.name), String(event.value))
   }
 
 }

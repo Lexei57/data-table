@@ -33,11 +33,10 @@ export interface IUser {
   email: string;
   street: string;
   city: string;
-  id: UserID
+  id: UserID;
 }
 
 export class User implements IUser {
-  city: string;
   email: string;
   gender: Gender;
   id: UserID;
@@ -45,22 +44,28 @@ export class User implements IUser {
   name: Name;
   phone: Phone;
   picture: Picture;
-  street: string;
 
   constructor(props: Partial<IUser>) {
-    this.city = props.city
-    this.email = props.email
-    this.gender = props.gender
-    this.id = props.id
-    this.location = props.location
-    this.name = props.name
-    this.phone = props.phone
-    this.picture = props.picture
-    this.street = props.street
+    this.email = props.email;
+    this.gender = props.gender;
+    this.id = props.id;
+    this.location = props.location;
+    this.name = props.name;
+    this.phone = props.phone;
+    this.picture = props.picture;
   }
-get fullName() {
-    return `${this.name.first} ${this.name.last}`
-}
+
+  get fullName() {
+    return `${this.name.first} ${this.name.last}`;
+  }
+
+  get city() {
+    return this.location.city
+  }
+
+  get street() {
+    return `${this.location.street.number} ${this.location.street.name}`;
+  }
 
 }
 
@@ -81,18 +86,18 @@ export interface IUserResponse {
 }
 
 export interface IUserQueryParams {
-  gender: boolean
-  location: boolean
-  email: boolean
-  phone: boolean
+  gender: boolean;
+  location: boolean;
+  email: boolean;
+  phone: boolean;
 }
 
-export const userQueryParamsNames: {[key in keyof IUserQueryParams]: string} = {
+export const userQueryParamsNames: { [key in keyof IUserQueryParams]: string } = {
   gender: 'Gender',
   location: 'Location',
   email: 'Email',
   phone: 'Phone'
-}
+};
 
 // export interface IUserDetailsResponse {
 //   results: IUserDetails[];
