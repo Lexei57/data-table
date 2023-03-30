@@ -38,6 +38,11 @@
 <!--</dx-data-grid>-->
 
 
+      <app-filter-table
+        class="d-flex justify-content-center"
+        [options]="filterTableOptions"
+        (valueChanged)="onChange($event)"
+      ></app-filter-table>
 
 <dx-data-grid
   id="gridContainer"

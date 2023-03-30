@@ -10,14 +10,15 @@ import {IUser, IUserResponse, IUserValues} from '../models/user.model';
 
 export class UserService {
   private seed: string = '755d9457a4d72f57';
-  private apiUrl = `https://randomuser.me/api/?results=100&seed=${this.seed}`;
+  private apiUrl = `https://randomuser.me/api/`;
 
   // usersDetails: IUserDetails[] = []
 
   users: IUser[] = [];
 
+
   constructor(private http: HttpClient) {
-    this.getUsers().subscribe();
+    // this.getUsers().subscribe();
   }
 
   getUsers(): Observable<IUser[]> {

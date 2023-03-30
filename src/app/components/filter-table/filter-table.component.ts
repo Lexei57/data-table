@@ -1,4 +1,9 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+
+export interface IFilterTableOptions {
+  name: string
+  value: boolean
+}
 
 @Component({
   selector: 'app-filter-table',
@@ -6,29 +11,13 @@ import {Component, EventEmitter, Output} from '@angular/core';
   styleUrls: ['./filter-table.component.scss']
 })
 export class FilterTableComponent {
-  @Output() genderChange = new EventEmitter<boolean>();
-  @Output() cityChange = new EventEmitter<boolean>();
-  @Output() streetChange = new EventEmitter<boolean>();
-  @Output() emailChange = new EventEmitter<boolean>();
-  @Output() phoneChange = new EventEmitter<boolean>();
+  @Input() options: IFilterTableOptions[]
+  @Output() valueChanged: EventEmitter<IFilterTableOptions> = new EventEmitter<IFilterTableOptions>()
 
-  onGenderChange(event: any) {
-    this.genderChange.emit(event.target.checked);
+  onChange(event: IFilterTableOptions) {
+    event.value = !event.value;
+    this.valueChanged.emit(event)
+    localStorage.setItem(String(event.name), String(event.value))
   }
 
-  onCityChange(event: any) {
-    this.cityChange.emit(event.target.checked);
-  }
-
-  onStreetChange(event: any) {
-    this.streetChange.emit(event.target.checked);
-  }
-
-  onEmailChange(event: any) {
-    this.emailChange.emit(event.target.checked);
-  }
-
-  onPhoneChange(event: any) {
-    this.phoneChange.emit(event.target.checked);
-  }
 }

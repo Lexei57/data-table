@@ -36,6 +36,34 @@ export interface IUser {
   id: UserID
 }
 
+export class User implements IUser {
+  city: string;
+  email: string;
+  gender: Gender;
+  id: UserID;
+  location: Location;
+  name: Name;
+  phone: Phone;
+  picture: Picture;
+  street: string;
+
+  constructor(props: Partial<IUser>) {
+    this.city = props.city
+    this.email = props.email
+    this.gender = props.gender
+    this.id = props.id
+    this.location = props.location
+    this.name = props.name
+    this.phone = props.phone
+    this.picture = props.picture
+    this.street = props.street
+  }
+get fullName() {
+    return `${this.name.first} ${this.name.last}`
+}
+
+}
+
 // export interface IUserDetails {
 //   location: Location;
 //   id: {
@@ -50,6 +78,20 @@ export interface IUser {
 
 export interface IUserResponse {
   results: IUser[];
+}
+
+export interface IUserQueryParams {
+  gender: boolean
+  location: boolean
+  email: boolean
+  phone: boolean
+}
+
+export const userQueryParamsNames: {[key in keyof IUserQueryParams]: string} = {
+  gender: 'Gender',
+  location: 'Location',
+  email: 'Email',
+  phone: 'Phone'
 }
 
 // export interface IUserDetailsResponse {
