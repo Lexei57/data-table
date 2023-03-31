@@ -1,7 +1,8 @@
-import {HttpClient} from '@angular/common/http';
-import {Injectable, OnInit} from '@angular/core';
-import {BehaviorSubject, filter, map, Observable, Subject, tap} from 'rxjs';
-import {IUser, IUserResponse, IUserValues} from '../models/user.model';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import { map, Observable, tap} from 'rxjs';
+import {IUser, IUserResponse, User} from '../models/user.model';
+import {apiDescription, arrayToString} from '../utils/utils';
 
 @Injectable({
   providedIn: 'root'
