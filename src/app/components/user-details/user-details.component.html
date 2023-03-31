@@ -3,8 +3,8 @@
   [showBorders]="true"
   [columnAutoWidth]="true"
 >
-  <dxi-column dataField="city" dataType="string"></dxi-column>
-  <dxi-column dataField="street" dataType="date"></dxi-column>
-  <dxi-column dataField="email" dataType="date"></dxi-column>
+  <dxi-column [visible]="queryOptions.location" dataField="city" dataType="string"></dxi-column>
+  <dxi-column [visible]="queryOptions.location" dataField="street" dataType="string"></dxi-column>
+  <dxi-column [visible]="queryOptions.email" dataField="email" dataType="string"></dxi-column>
 </dx-data-grid>
 

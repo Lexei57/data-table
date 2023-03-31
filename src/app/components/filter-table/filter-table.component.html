@@ -1,7 +1,10 @@
-<div class="check-background primary-subtle mb-2">
+<div class="check-background primary-subtle px-4 mb-3">
   <div class="form-check form-switch form-check-inline " *ngFor="let option of options; let i = index">
-    <input class="form-check-input " type="checkbox" [id]="i"
-           [checked]="option.value" (change)="onChange(option)">
+    <input
+      class="form-check-input"
+      type="checkbox" [id]="i"
+      [checked]="option.value"
+      (change)="onChange(option)">
     <label class="form-check-label" [for]="i">
       {{option.name}}
     </label>

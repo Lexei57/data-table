@@ -1,84 +1,49 @@
-<!--<dx-data-grid-->
-<!--  id="gridContainer"-->
-<!--  [customizeColumns]="customizeColumns"-->
-<!--  [dataSource]="dataSource"-->
-<!--  [showBorders]="true"-->
-<!--&gt;-->
-<!--  <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>-->
-<!--  <dxo-paging [pageSize]="25"> </dxo-paging>-->
-<!--  <dxo-pager-->
-<!--    [visible]="true"-->
-<!--    [allowedPageSizes]="allowedPageSizes"-->
-<!--    [displayMode]="displayMode"-->
-<!--    [showInfo]="showInfo"-->
-<!--    [showNavigationButtons]="showNavButtons"-->
-<!--  >-->
-<!--  </dxo-pager>-->
-<!--</dx-data-grid>-->
+<article>
+  <nav>
+    <app-filter-table
+      class="d-flex justify-content-center"
+      [options]="filterTableOptions"
+      (valueChanged)="onChange($event)">
+    </app-filter-table>
+  </nav>
 
+  <section>
+    <dx-data-grid
+      id="gridContainer"
+      keyExpr="id.value"
+      [dataSource]="users"
+      [showBorders]="true"
+      [rowAlternationEnabled]="true">
 
+    <dxo-paging [pageSize]="25"> </dxo-paging>
+    <dxi-column
+      caption="Photo"
+      dataField="picture.medium"
+      dataType="string"
+      [width]="100"
+      [allowFiltering]="false"
+      [allowSorting]="false"
+      cellTemplate="cellTemplate">
+    </dxi-column>
 
-<!--<dx-data-grid-->
-<!--  [dataSource]="dataSource"-->
-<!--  [remoteOperations]="true"-->
-<!--  [allowColumnResizing]="true"-->
-<!--  [columnAutoWidth]="true"-->
-<!--  [showBorders]="true"-->
-<!--  [showColumnLines]="true"-->
-<!--  [showRowLines]="true"-->
-<!--  [rowAlternationEnabled]="true"-->
-<!--  [pager]="{ allowedPageSizes: allowedPageSizes, showPageSizeSelector: true }"-->
-<!--&gt;-->
-<!--  <dxo-paging [pageSize]="25"></dxo-paging>-->
-<!--  <dxi-column dataField="picture.thumbnail" caption="Picture" [cellTemplate]="pictureTemplate"></dxi-column>-->
-<!--  <dxi-column dataField="name" caption="Name" [cellTemplate]="nameTemplate"></dxi-column>-->
-<!--  <dxi-column dataField="gender" caption="Gender"></dxi-column>-->
-<!--  <dxi-column dataField="phone" caption="Phone"></dxi-column>-->
-<!--  <dxo-detail [template]="detailTemplate"></dxo-detail>-->
-<!--</dx-data-grid>-->
+    <dxi-column dataField="fullName" dataType="string" [width]="130"></dxi-column>
+    <dxi-column [visible]="queryOptions.gender" dataField="gender" dataType="string" [width]="70"></dxi-column>
+    <dxi-column [visible]="queryOptions.phone" dataField="phone" [width]="130"></dxi-column>
 
+    <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
 
-      <app-filter-table
-        class="d-flex justify-content-center"
-        [options]="filterTableOptions"
-        (valueChanged)="onChange($event)"
-      ></app-filter-table>
+    <div *dxTemplate="let user of 'cellTemplate'">
+      <img [src]="user.value" alt="profile-image">
+    </div>
 
-<dx-data-grid
-  id="gridContainer"
-  keyExpr="id.value"
-  [dataSource]="users"
-  [showBorders]="true"
-  [rowAlternationEnabled]="true"
->
+    <div *dxTemplate="let employee of 'detail'">
+      <div class="master-detail-caption">{{'More information:'}}</div>
+      <app-user-details [key]="employee.key" [queryOptions]="queryOptions"></app-user-details>
+    </div>
+    </dx-data-grid>
+  </section>
+</article>
 
-  <dxo-paging [pageSize]="25"> </dxo-paging>
-  <dxi-column
-    caption="Photo"
-    dataField="picture.medium"
-    dataType="string"
-    [width]="100"
-    [allowFiltering]="false"
-    [allowSorting]="false"
-    cellTemplate="cellTemplate"
-  ></dxi-column>
-  <dxi-column dataField="fullName" dataType="string" [width]="150"></dxi-column>
-  <dxi-column *ngIf="queryOptions.gender" dataField="gender" dataType="string" [width]="100"></dxi-column>
-  <dxi-column *ngIf="queryOptions.phone" dataField="phone"  [width]="130"></dxi-column>
-
-
-  <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
-
-
-  <div *dxTemplate="let user of 'cellTemplate'">
-    <img [src]="user.value" alt="profile-image">
-  </div>
-
-<div *dxTemplate="let employee of 'detail'">
-    <div class="master-detail-caption">{{'More information:'}}</div>
-  <app-user-details [key]="employee.key"></app-user-details>
-  </div>
-</dx-data-grid>
 
 
 

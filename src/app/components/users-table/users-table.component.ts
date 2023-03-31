@@ -9,7 +9,6 @@ import {IFilterTableOptions} from '../filter-table/filter-table.component';
   styleUrls: ['./users-table.component.scss']
 })
 export class UsersTableComponent implements OnInit {
-  // users: Observable<IUser[]> = this.userService.getUsers(); // переделать методм присвоивания данных через ngOnInit
   users: IUser[] = [];
   filterTableOptions: IFilterTableOptions[];
 
@@ -20,8 +19,7 @@ export class UsersTableComponent implements OnInit {
     phone: JSON.parse(localStorage.getItem('Phone'))
   };
 
-  constructor(private userService: UserService) {
-  }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
     this.filterTableOptions = Object.entries(this.queryOptions).map(option => {
@@ -44,9 +42,7 @@ export class UsersTableComponent implements OnInit {
     const inc = ['id', 'name', 'picture', ...Object.entries(this.queryOptions).filter(param => {
       return param[1];
     }).map(param => param[0])];
-    console.log(inc);
     this.userService.getUsers({inc}).subscribe(users => {
-      console.log(users);
       this.users = users.filter(noIdUsr => noIdUsr.id.value !== null);
     });
   }

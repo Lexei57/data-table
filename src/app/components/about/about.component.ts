@@ -1,4 +1,9 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+
+interface ICards {
+  title: string
+  text: string
+}
 
 @Component({
   selector: 'app-about',
@@ -7,4 +12,26 @@ import { Component } from '@angular/core';
 })
 export class AboutComponent {
 
+  cards: ICards[] = [
+    {
+      title: 'User output',
+      text: 'The DevExtreme table displays a list of users, with personal information taken from the Random User' +
+        ' Generator service using its API. This allows you to generate and display a given number of users with the ' +
+        'right set of information'
+    },
+    {
+      title: 'Information filtering',
+      text: 'The project has implemented a tool to filter the display of columns with user information. \n' +
+        'The ability is implemented using a number of checkbox elements Bootstrap. When the position of the checkbox' +
+        ' is active, the column responsible for it is displayed correctly on the user\'s screen. Also implemented' +
+        ' is saving the position of the checkboxes to a local repository, which allows you to save the position of' +
+        ' the checkboxes even when the page is reloaded'
+    },{
+      title: 'Switching between pages',
+      text: 'Transition between pages is implemented in the SPA, which allows you to move between content pages of' +
+        ' the site without reloading it. A "lazy loading" has been applied here to optimize the process of loading' +
+        ' application elements, allowing individual content pages to be loaded only after a user\'s request, rather' +
+        ' than when the application is initialized'
+    },
+  ]
 }

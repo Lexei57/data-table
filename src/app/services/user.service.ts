@@ -3,39 +3,32 @@ import {Injectable, OnInit} from '@angular/core';
 import {BehaviorSubject, filter, map, Observable, Subject, tap} from 'rxjs';
 import {IUser, IUserResponse, IUserValues} from '../models/user.model';
 
-
 @Injectable({
   providedIn: 'root'
 })
 
 export class UserService {
   private seed: string = '755d9457a4d72f57';
-  private apiUrl = `https://randomuser.me/api/`;
-
-  // usersDetails: IUserDetails[] = []
-
+  private numberOfUsers: number = 100;
+  private apiUrl: string = `https://randomuser.me/api/`;
   users: IUser[] = [];
 
-
   constructor(private http: HttpClient) {
-    // this.getUsers().subscribe();
   }
-
-
-
-  getUsers(): Observable<IUser[]> {
-    return this.http.get<IUserResponse>(this.apiUrl).pipe(
-      map(response => {
-        return response.results.map((item: any) => {
-          return {
-            picture: item.picture.medium,
-            name: `${item.name.first} ${item.name.last}`,
-            gender: item.gender,
-            phone: item.phone
-          }
-        })
-      })
-    )
+  getUsers(queryParams: apiDescription): Observable<IUser[]> {
+    arrayToString(queryParams);
+    const params = new HttpParams().appendAll({
+      ...queryParams,
+      results: this.numberOfUsers,
+      seed: this.seed
+    });
+    return this.http.get<IUserResponse>(this.apiUrl, {
+      params
+    })
+      .pipe(
+        map(response => response.results.map(user => new User(user))),
+        tap(response => this.users = response)
+      );
   }
 
 

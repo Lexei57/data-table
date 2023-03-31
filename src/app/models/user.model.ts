@@ -19,9 +19,11 @@ type UserID = {
   name: string
   value: string
 }
+
 type FullName = string;
 type Gender = string;
 type Phone = string;
+type Email = string
 
 export interface IUser {
   picture: Picture;
@@ -30,14 +32,12 @@ export interface IUser {
   phone: Phone;
   fullName: FullName;
   location: Location;
-  email: string;
-  street: string;
-  city: string;
+  email: Email;
   id: UserID;
 }
 
 export class User implements IUser {
-  email: string;
+  email: Email;
   gender: Gender;
   id: UserID;
   location: Location;
@@ -69,18 +69,6 @@ export class User implements IUser {
 
 }
 
-// export interface IUserDetails {
-//   location: Location;
-//   id: {
-//     name: string
-//     value: number
-//   }
-//   street: string;
-//   city: string;
-//   email: string;
-// }
-
-
 export interface IUserResponse {
   results: IUser[];
 }
@@ -98,10 +86,3 @@ export const userQueryParamsNames: { [key in keyof IUserQueryParams]: string } =
   email: 'Email',
   phone: 'Phone'
 };
-
-// export interface IUserDetailsResponse {
-//   results: IUserDetails[];
-// }
-
-
-
