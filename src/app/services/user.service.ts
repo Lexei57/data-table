@@ -1,6 +1,7 @@
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {Injectable,} from '@angular/core';
-import {map, Observable, tap} from 'rxjs';
+
+import {Injectable} from '@angular/core';
+import { map, Observable, tap} from 'rxjs';
 import {IUser, IUserResponse, User} from '../models/user.model';
 import {apiDescription, arrayToString} from '../utils/utils';
 
