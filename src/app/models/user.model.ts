@@ -7,6 +7,7 @@ type Name = {
   first: string;
   last: string;
 }
+
 type Street = {
   number: number
   name: string

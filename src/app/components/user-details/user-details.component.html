@@ -3,8 +3,8 @@
   [showBorders]="true"
   [columnAutoWidth]="true"
 >
-  <dxi-column [visible]="queryOptions.location" dataField="city" dataType="string"></dxi-column>
-  <dxi-column [visible]="queryOptions.location" dataField="street" dataType="string"></dxi-column>
+    <dxi-column *ngIf="queryOptions.location"  dataField="city" dataType="string"></dxi-column>
+    <dxi-column *ngIf="queryOptions.location" dataField="street" dataType="string"></dxi-column>
   <dxi-column [visible]="queryOptions.email" dataField="email" dataType="string"></dxi-column>
 </dx-data-grid>
 
