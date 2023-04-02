@@ -1,7 +1,7 @@
 <div class="check-background primary-subtle px-4 mb-3">
   <div class="form-check form-switch form-check-inline " *ngFor="let option of options; let i = index">
     <input
-      class="form-check-input"
+      class="form-check-input pointer"
       type="checkbox" [id]="i"
       [checked]="option.value"
       (change)="onChange(option)">

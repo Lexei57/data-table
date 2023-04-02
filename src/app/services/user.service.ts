@@ -32,6 +32,4 @@ export class UserService {
         tap(response => this.users = response)
       );
   }
-
-
 }
