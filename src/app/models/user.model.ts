@@ -86,3 +86,5 @@ export const userQueryParamsNames: { [key in keyof IUserQueryParams]: string } =
   email: 'Email',
   phone: 'Phone'
 };
+
+
