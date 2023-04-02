@@ -13,11 +13,12 @@ export class UsersTableComponent implements OnInit {
   filterTableOptions: IFilterTableOptions[];
 
   queryOptions: IUserQueryParams = {
-    gender: JSON.parse(localStorage.getItem('Gender')) || true,
-    location: JSON.parse(localStorage.getItem('Location')) || true,
-    email: JSON.parse(localStorage.getItem('Email')) || true,
-    phone: JSON.parse(localStorage.getItem('Phone')) || true
+    gender: JSON.parse(localStorage.getItem('Gender')),
+    location: JSON.parse(localStorage.getItem('Location')),
+    email: JSON.parse(localStorage.getItem('Email')),
+    phone: JSON.parse(localStorage.getItem('Phone'))
   };
+
 
   constructor(private userService: UserService) { }
 
