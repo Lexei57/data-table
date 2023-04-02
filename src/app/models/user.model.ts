@@ -61,13 +61,12 @@ export class User implements IUser {
   }
 
   get city() {
-    return this.location.city
+    return this.location ? this.location.city : null
   }
 
   get street() {
-    return `${this.location.street.number} ${this.location.street.name}`;
+    return this.location ? `${this.location.street.number} ${this.location.street.name}` : null;
   }
-
 }
 
 export interface IUserResponse {
