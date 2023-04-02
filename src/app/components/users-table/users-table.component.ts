@@ -19,6 +19,7 @@ export class UsersTableComponent implements OnInit {
     phone: JSON.parse(localStorage.getItem('Phone'))
   };
 
+
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
